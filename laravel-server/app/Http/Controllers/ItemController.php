@@ -25,4 +25,44 @@ class ItemController extends Controller
             "status"=>"success"
         ], 200);
     }
+
+
+    public function update(Request $request, $id){
+        if(!$id){
+            return response()->json([
+                "status"=>"failed"
+            ], 500);
+        }
+
+        $item = Item::find($id);
+
+        $item->name = $request->name;
+        $item->description = $request->description;
+        $item->price = $request->price;
+        $item->image = $request->image;
+        $item->save();
+
+
+        return response()->json([
+            "status"=>"success",
+            "item"=>$item
+        ], 200);
+    }
+
+    public function delete($id){
+        if(!$id){
+            return response()->json([
+                "status"=>"failed"
+            ], 500);
+        }
+
+        $item = Item::find($id);
+        $item->delete();
+
+        return response()->json([
+            "status"=>"success",
+            "item"=>$item
+        ], 200);
+
+    }
 }
