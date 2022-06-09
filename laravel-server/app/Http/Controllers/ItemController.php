@@ -65,4 +65,18 @@ class ItemController extends Controller
         ], 200);
 
     }
+
+    public function get($id = null){
+        
+        if($id){
+            $items = Item::find($id);
+        }else{
+            $items = Item::all();
+        }
+
+        return response()->json([
+            "status"=>"success",
+            "items"=>$items
+        ], 200);
+    }
 }
