@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -34,5 +35,12 @@ Route::prefix("admin")->group(function(){
         Route::put('item/{id}', 'update')->name("item.update");
         Route::delete('item/{id}', 'delete')->name("item.delete");
         Route::get('item/{id?}', 'get')->name("item.get");
+    });
+
+    Route::controller(UserController::class)->group(function(){
+        Route::post('item', 'add')->name("item.add");
+        Route::put('item/{id}', 'update')->name("item.update");
+        Route::delete('item/{id}', 'delete')->name("item.delete");
+        Route::get('user/{id?}', 'get')->name("user.get");
     });
 });
