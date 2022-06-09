@@ -36,6 +36,23 @@ class UserController extends Controller
         ], 200);
     }
 
+    public function delete($id){
+        if(!$id){
+            return response()->json([
+                "status"=>"failed"
+            ], 500);
+        }
+
+        $user = User::find($id);
+        $user->delete();
+
+        return response()->json([
+            "status"=>"success",
+            "user"=>$user
+        ], 200);
+
+    }
+
     public function get($id = null){
         if($id){
             $users = User::find($id);
