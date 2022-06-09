@@ -15,9 +15,14 @@ class ItemController extends Controller
         $item->name = $request->name;
         $item->description = $request->description;
         $item->price = $request->price;
+        $item->image = $request->image;
         $item->save();
 
         $categories = Category::find($request->categories);
         $item->categories()->attach($categories);
+
+        return response()->json([
+            "status"=>"success"
+        ], 200);
     }
 }
