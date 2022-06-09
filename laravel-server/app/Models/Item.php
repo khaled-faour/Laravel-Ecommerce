@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
+    public function categories(){
+        return $this->belongsToMany(Category::class);
+    }
 }
