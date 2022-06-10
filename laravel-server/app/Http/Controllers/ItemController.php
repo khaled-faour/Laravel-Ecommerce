@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+
 
 use App\Models\Category;
 use App\Models\Item;
@@ -93,6 +96,17 @@ class ItemController extends Controller
         return response()->json([
             "status"=>"success",
             "items"=>$items
+        ], 200);
+    }
+
+    public function addFavorite($id){
+        DB::table('favorites')->insert([
+            'item_id'=>$id,
+            'user_id'=>Auth::user()->id,
+        ]);
+
+        return response()->json([
+            "status"=>"success"
         ], 200);
     }
 }
