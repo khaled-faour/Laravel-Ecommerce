@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -32,14 +33,14 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::prefix('store')->group(function(){
-    // Route::middleware('role.user')->group(function(){
-        Route::get('test', function(){
-            return response()->json([
-                "status"=>"success",
-                "message"=>"hello"
-            ]);
-        })->middleware('role.user');
-    // });
+    Route::middleware('role.user')->group(function(){
+        Route::controller(ItemController::class)->group(function(){
+            Route::get('item/{id?}', 'get')->name("item.get");
+        });    
+        Route::controller(CategoryController::class)->group(function(){
+            Route::get('category/{id?}', 'get')->name("item.get");
+        });    
+    });
 });
 
 
@@ -49,14 +50,20 @@ Route::prefix("admin")->group(function(){
             Route::post('item', 'add')->name("item.add");
             Route::put('item/{id}', 'update')->name("item.update");
             Route::delete('item/{id}', 'delete')->name("item.delete");
-            Route::get('item/{id?}', 'get')->name("item.get")->withoutMiddleware('role.admin');
         });
     
         Route::controller(UserController::class)->group(function(){
             // Route::post('user', 'add')->name("item.add");
-            Route::put('user/{id}', 'update')->name("item.update");
-            Route::delete('user/{id}', 'delete')->name("item.delete");
+            Route::put('user/{id}', 'update')->name("user.update");
+            Route::delete('user/{id}', 'delete')->name("user.delete");
             Route::get('user/{id?}', 'get')->name("user.get");
         });
+
+
+        Route::controller(CategoryController::class)->group(function(){
+            Route::post('category/', 'add')->name("category.add");
+            Route::put('category/{id}', 'update')->name("category.update");
+            Route::delete('category/{id}', 'delete')->name("category.delete");
+        }); 
     });
 });
