@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->id();
             $table->foreignId("item_id")->constrained("items");
             $table->foreignId("user_id")->constrained("users");
+
+            $table->primary(['item_id', 'user_id']);
         });
     }
 
