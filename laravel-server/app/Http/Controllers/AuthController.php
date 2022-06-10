@@ -16,10 +16,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+
         $credentials = $request->only('email', 'password');
 
         $token = Auth::attempt($credentials);
@@ -43,11 +40,6 @@ class AuthController extends Controller
     }
 
     public function register(Request $request){
-        // $request->validate([
-        //     // 'name' => 'required|string|max:255',
-        //     'email' => 'required|string|email|max:255|unique:users',
-        //     'password' => 'required|string|min:6',
-        // ]);
         
         $user = new User;
         $user->first_name = $request->first_name;
@@ -59,15 +51,6 @@ class AuthController extends Controller
         $user->user_type = $request->user_type;
 
         $user->save();
-        // $user = User::create([
-        //     'first_name' => $request->first_name,
-        //     'last_name' => $request->last_name,
-        //     'email' => $request->email,
-        //     'password' => Hash::make($request->password),
-        //     'phone_number' => $request->phone_number,
-        //     'dob' => $request->dob,
-        //     'user_type' => $request->user_type,
-        // ]);
 
         $token = Auth::login($user);
         return response()->json([

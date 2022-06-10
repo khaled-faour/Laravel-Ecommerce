@@ -30,17 +30,20 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::prefix("admin")->group(function(){
-    Route::controller(ItemController::class)->group(function(){
-        Route::post('item', 'add')->name("item.add");
-        Route::put('item/{id}', 'update')->name("item.update");
-        Route::delete('item/{id}', 'delete')->name("item.delete");
-        Route::get('item/{id?}', 'get')->name("item.get");
+    Route::middleware('role.admin')->group(function(){
+        Route::controller(ItemController::class)->group(function(){
+            Route::post('item', 'add')->name("item.add");
+            Route::put('item/{id}', 'update')->name("item.update");
+            Route::delete('item/{id}', 'delete')->name("item.delete");
+            Route::get('item/{id?}', 'get')->name("item.get");
+        });
+    
+        Route::controller(UserController::class)->group(function(){
+            // Route::post('user', 'add')->name("item.add");
+            Route::put('user/{id}', 'update')->name("item.update");
+            Route::delete('user/{id}', 'delete')->name("item.delete");
+            Route::get('user/{id?}', 'get')->name("user.get");
+        });
     });
 
-    Route::controller(UserController::class)->group(function(){
-        Route::post('user', 'add')->name("item.add");
-        Route::put('user/{id}', 'update')->name("item.update");
-        Route::delete('user/{id}', 'delete')->name("item.delete");
-        Route::get('user/{id?}', 'get')->name("user.get");
-    });
 });
