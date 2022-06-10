@@ -70,10 +70,15 @@ class ItemController extends Controller
         
         if($id){
             $items = Item::find($id);
+            $items->categories = $items->categories()->get();
         }else{
             $items = Item::all();
+            foreach($items as $item){
+                $item->categories = $item->categories()->get();
+            }
         }
 
+        
         return response()->json([
             "status"=>"success",
             "items"=>$items

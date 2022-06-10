@@ -22,16 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
-Route::middleware('role.user')->group(function(){
-    Route::get('test', function(){
-        return response()->json([
-            "status"=>"success",
-            "message"=>"hello"
-        ]);
-    });
-});
-
-
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
     Route::post('register', 'register');
@@ -41,13 +31,25 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
+Route::prefix('store')->group(function(){
+    // Route::middleware('role.user')->group(function(){
+        Route::get('test', function(){
+            return response()->json([
+                "status"=>"success",
+                "message"=>"hello"
+            ]);
+        })->middleware('role.user');
+    // });
+});
+
+
 Route::prefix("admin")->group(function(){
     Route::middleware('role.admin')->group(function(){
         Route::controller(ItemController::class)->group(function(){
             Route::post('item', 'add')->name("item.add");
             Route::put('item/{id}', 'update')->name("item.update");
             Route::delete('item/{id}', 'delete')->name("item.delete");
-            Route::get('item/{id?}', 'get')->name("item.get");
+            Route::get('item/{id?}', 'get')->name("item.get")->withoutMiddleware('role.admin');
         });
     
         Route::controller(UserController::class)->group(function(){
@@ -57,5 +59,4 @@ Route::prefix("admin")->group(function(){
             Route::get('user/{id?}', 'get')->name("user.get");
         });
     });
-
 });
