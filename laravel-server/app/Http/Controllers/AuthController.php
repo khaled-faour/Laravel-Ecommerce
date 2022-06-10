@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -41,6 +42,16 @@ class AuthController extends Controller
 
     public function register(Request $request){
         
+        $image = $request->image;
+        $image_parts = explode(";base64,", $image);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        $image_type = $image_type_aux[1];
+        $image_base64 = base64_decode($image_parts[1]);
+        $uniqid = uniqid();
+        $imageName = $uniqid . '.'.$image_type;
+        
+
+
         $user = new User;
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
@@ -49,8 +60,10 @@ class AuthController extends Controller
         $user->phone_number = $request->phone_number;
         $user->dob = $request->dob;
         $user->user_type = $request->user_type;
+        $user->image = '/storage/profiles/'.$imageName;
 
         $user->save();
+        Storage::disk('profiles')->put($imageName, $image_base64);
 
         $token = Auth::login($user);
         return response()->json([
