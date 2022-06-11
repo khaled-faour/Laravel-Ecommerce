@@ -1,1 +1,29 @@
-HOME PAGE
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | Home</title>
+</head>
+<body>
+    <div class="container">
+
+        <!-- Use any element to open the sidenav -->
+        
+        <span class="open-nav" onclick="openNav()"><i class="fa-solid fa-bars"></i></span>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="./users.html" target="admin-frame">Users</a>
+            <a href="./categories.html" target="admin-frame">Categories</a>
+            <a href="./items.html" target="admin-frame">Items</a>
+          </div>
+          <iframe src="./users.html" name="admin-frame" onload="closeNav()" frameborder="0">
+          </iframe>
+
+          <script src="../js/nav.js"></script>
+    </div>
+</body>
+</html>
