@@ -47,14 +47,27 @@ class ItemController extends Controller
                 "status"=>"failed"
             ], 500);
         }
-
+        $imageName = '';
+        $image_base64 = '';
         $item = Item::find($id);
 
         $item->name = $request->name;
         $item->description = $request->description;
         $item->price = $request->price;
-        $item->image = $request->image;
+
+        if(!str_contains($request->image, $item->image)){
+            $image = $request->image;
+            $image_parts = explode(";base64,", $image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            $uniqid = uniqid();
+            $imageName = $uniqid . '.'.$image_type;
+
+            $item->image = '/storage/images/'.$imageName;
+        }
         $item->save();
+        Storage::disk('images')->put($imageName, $image_base64);
 
 
         return response()->json([
