@@ -1,1 +1,45 @@
-/* Styles goes here */
+/* Styles goes here */body{
+    padding: 0;
+    margin: 0;
+    background-color: #001e3c;
+}
+/* primary: #007fff */
+/* text: #bbbfc3 */
+.container{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 400px;
+}
+
+.input, .button{
+    height: 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    padding: 0 5px;
+}
+
+.input{
+    margin-bottom: 10px;
+}
+
+.button{
+    background-color: #007fff;
+    color: white;
+
+}
+.button:hover{
+    cursor: pointer;
+}
+.button:active{
+    background-color: #0063c6;
+}
+
+label{
+    color: #bbbfc3;
+}
