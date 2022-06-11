@@ -51,6 +51,30 @@
     </div>
 
 
+    <!-- Edit Item Modal -->
+    <div id="edit-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="edit-modal-close" class="close">&times;</span>
+            
+            <div class="form-container">
+                <img id="edit-img-view" width="200px"/>
+                <input id="edit-img" type="file" class="input">
+                <label for="edit-name">Name</label>
+                <input id="edit-name" type="text" name="name" class="input"/>
+                <label for="edit-description">Description</label>
+                <textarea id="edit-description" class="input textarea"></textarea>
+                <label for="edit-price">Price</label>
+                <input id="edit-price" type="number" name="price" class="input"/>
+
+                <button id="edit-save" class="button edit-button"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+            </div>
+        </div>
+    
+    </div>
+
+
     <!-- Delete Item Modal -->
     <div id="delete-modal" class="modal">
 

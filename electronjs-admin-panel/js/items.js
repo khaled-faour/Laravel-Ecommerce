@@ -1,7 +1,14 @@
+let items =[]
+
 let addModal;
 let addButton;
 let addCloseButton;
 let addSave;
+
+let editModal;
+let editCloseButton;
+let editSave;
+
 
 let deleteModal;
 let cancelDelete;
@@ -12,6 +19,10 @@ window.addEventListener('load', ()=>{
     addButton = document.getElementById("add-button");
     addCloseButton = document.getElementById("add-modal-close");
     addSave = document.getElementById("add-save");
+
+    editModal = document.getElementById("edit-modal");
+    editCloseButton = document.getElementById("edit-modal-close");
+    editSave = document.getElementById("edit-save");
 
     // ADD ITEM LISTENERS
     addButton.addEventListener('click', ()=>{
@@ -30,6 +41,14 @@ window.addEventListener('load', ()=>{
             document.getElementById('add-img-view').src = reader.result
         })
     })
+    document.getElementById('edit-img').addEventListener('change', (e) => {
+        let reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0]);
+        reader.addEventListener('loadend', () => {
+            console.log(reader.result)
+            document.getElementById('edit-img-view').src = reader.result
+        })
+    })
 
     addSave.addEventListener('click', saveItem)
 
@@ -39,6 +58,10 @@ window.addEventListener('load', ()=>{
     cancelDelete = document.getElementById("delete-modal-close");
     confirmDelete = document.getElementById("delete-modal-confirm");
 
+    // EDIT ITEM LISTENERS
+    editCloseButton.addEventListener('click', ()=>{
+        editModal.style.display = "none";
+    })
 
     fetchItems()
     fetchCategories()
@@ -55,14 +78,14 @@ const request = axios.create({
 });
 
 const tableList = document.getElementById('list');
-const categoriesList = document.getElementById('add-categories');
+const addCategoriesList = document.getElementById('add-categories');
     
 console.log(localStorage.getItem("token"))
 
 async function fetchItems(){
     await request.get("/store/item").then(response=>{
         tableList.innerHTML = '';
-        const items = [...response.data.items];
+        items = [...response.data.items];
         console.log(items)
         items.map(item=>{
             tableList.innerHTML += `
@@ -82,10 +105,10 @@ async function fetchItems(){
 async function fetchCategories(){
     await request.get("/store/category").then(response=>{
         console.log(response.data)
-        categoriesList.innerHTML = '';
+        addCategoriesList.innerHTML = '';
         const categories = [...response.data.categories];
         categories.map(category=>{
-            categoriesList.innerHTML += `
+            addCategoriesList.innerHTML += `
             <option value="${category.id}">${category.category}</option>
             `
         })
@@ -111,7 +134,42 @@ function deleteItem(id){
 
 }
 function editItem(id){
-    console.log("editing: ", id)
+    editModal.style.display = "block"
+    const item = items.find(item=>item.id === id)
+
+    const name = document.getElementById('edit-name')
+    const description = document.getElementById('edit-description')
+    const price = document.getElementById('edit-price')
+    const image = document.getElementById('edit-img-view');
+
+    name.value = item.name
+    description.value = item.description
+    price.value = item.price
+    image.src = `http://127.0.0.1:8000${item.image}`;
+
+    const saveEdit = async ()=>{
+        const newItem = {
+            name: name.value,
+            description: description.value,
+            price: price.value,
+            image: image.src
+        }
+        
+
+        // newItem.append('name', name.value)
+        // newItem.append('description', description.value)
+        // newItem.append('price', price.value)
+        // newItem.append('image', image.src)
+
+        await request.put(`/admin/item/${id}`, newItem).then(response=>{
+            if(response.data.status === "success"){
+                editModal.style.display = "none"
+                fetchItems();
+            }
+        })
+    }
+
+    editSave.onclick = ()=>saveEdit().then(()=>editSave.onclick=()=>{})
 }
 
 function saveItem(){
