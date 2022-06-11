@@ -66,6 +66,14 @@ label{
     color: white
 }
 
+.logout{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+    color: white
+}
+
 
 .sidenav {
     height: 100%;
@@ -111,6 +119,20 @@ label{
   }
   .list-table td{
       text-align: center;
+      height: 25px;
+  }
+  .list-table .action-buttons a{
+    padding: 0 5px;
+    color: white;
+  }
+
+  .list-table .action-buttons a:hover{
+    color: #0063c6;
+    cursor: pointer;
+  }
+
+  .list-table .action-buttons a:active{
+    color: #001e3c;
   }
 
   @media screen and (max-height: 450px) {

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
@@ -17,26 +18,37 @@
          <th>Actions</th>
      </tr>
     </thead>
-    <tbody>
+    <tbody id="list">
         <tr>
             <td>Items 1</td>
             <td>Description for item 1</td>
             <td> 45.00</td>
-            <td>DELETE | EDIT</td>
+            <td class="action-buttons">
+                <a href="#"><i class="fa-solid fa-trash"></i></a>
+                <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+            </td>
         </tr>
         <tr>
             <td>Items 1</td>
             <td>Description for item 1</td>
             <td> 45.00</td>
-            <td>DELETE | EDIT</td>
+            <td class="action-buttons">
+                <a href="#"><i class="fa-solid fa-trash"></i></a>
+                <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+            </td>
         </tr>
         <tr>
             <td>Items 1</td>
             <td>Description for item 1</td>
             <td> 45.00</td>
-            <td>DELETE | EDIT</td>
+            <td class="action-buttons">
+                <a href="#"><i class="fa-solid fa-trash"></i></a>
+                <a href="#"><i class="fa-solid fa-pen-to-square"></i></a>
+            </td>
         </tr>
     </tbody>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/items.js"></script>
 </table>
 </body>
 </html>
