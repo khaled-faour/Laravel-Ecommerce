@@ -5,14 +5,14 @@
 }
 /* primary: #007fff */
 /* text: #bbbfc3 */
-.container{
+.login-container{
     position: absolute;
     display: flex;
     flex-direction: column;
     top: 50%;
     left:50%;
     transform: translate(-50%, -50%);
-    width: 100%;
+    width: 90%;
     max-width: 400px;
 }
 
