@@ -80,7 +80,6 @@ const request = axios.create({
 const tableList = document.getElementById('list');
 const addCategoriesList = document.getElementById('add-categories');
     
-console.log(localStorage.getItem("token"))
 
 async function fetchItems(){
     await request.get("/store/item").then(response=>{
