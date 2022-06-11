@@ -4,8 +4,7 @@
     background-color: #001e3c;
     color: white;
 }
-/* primary: #007fff */
-/* text: #bbbfc3 */
+
 .login-container{
     position: absolute;
     display: flex;
@@ -45,17 +44,17 @@ label{
     color: #bbbfc3;
 }
 
-iframe{
-    position:fixed;
+
+.container{
+    position: fixed;
     top:0;
     left:0; 
     bottom:0; 
-    right:0; 
-    width:100%; 
+    right:0;
     height:100%; 
     border:none; 
-    margin:0; 
-    padding: 0 20px;
+    margin: 0; 
+    padding: 20px;
     overflow:hidden;
 }
 
@@ -103,6 +102,16 @@ iframe{
     margin-left: 50px;
   }
   
+  .list-table{
+      padding: 10px;
+      background-color: #007fff;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px, rgba(0, 0, 0, 0.04) 0px 10px 10px;
+  }
+  .list-table td{
+      text-align: center;
+  }
 
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}

@@ -13,14 +13,14 @@
 
         <!-- Use any element to open the sidenav -->
         
-        <span class="open-nav" onclick="openNav()"><i class="fa-solid fa-bars"></i></span>
-        <div id="mySidenav" class="sidenav">
+          <span class="open-nav" onclick="openNav()"><i class="fa-solid fa-bars"></i></span>
+          <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="./users.html" target="admin-frame">Users</a>
             <a href="./categories.html" target="admin-frame">Categories</a>
             <a href="./items.html" target="admin-frame">Items</a>
           </div>
-          <iframe src="./users.html" name="admin-frame" onload="closeNav()" frameborder="0">
+          <iframe src="./items.html" name="admin-frame" height="100%" width="100%" onload="closeNav()" frameborder="0">
           </iframe>
 
           <script src="../js/nav.js"></script>
