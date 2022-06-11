@@ -3,12 +3,17 @@ let addButton;
 let addCloseButton;
 let addSave;
 
+let deleteModal;
+let cancelDelete;
+let confirmDelete;
+
 window.addEventListener('load', ()=>{
     addModal = document.getElementById("add-modal");
     addButton = document.getElementById("add-button");
     addCloseButton = document.getElementById("add-modal-close");
     addSave = document.getElementById("add-save");
 
+    // ADD ITEM LISTENERS
     addButton.addEventListener('click', ()=>{
         addModal.style.display = "block";
     })
@@ -27,6 +32,14 @@ window.addEventListener('load', ()=>{
     })
 
     addSave.addEventListener('click', saveItem)
+
+
+    // DELETE ITEM LISTENERS
+    deleteModal = document.getElementById("delete-modal");
+    cancelDelete = document.getElementById("delete-modal-close");
+    confirmDelete = document.getElementById("delete-modal-confirm");
+
+
     fetchItems()
     fetchCategories()
 })
@@ -81,7 +94,21 @@ async function fetchCategories(){
 
 
 function deleteItem(id){
-    console.log("deleting: ", id)
+
+
+    const deleteConfrim = async ()=>{
+        await request.delete(`/admin/item/${id}`).then(response=>{
+            if(response.data.status === "success"){
+                deleteModal.style.display = "none";
+                fetchItems();
+            }
+        })
+    }
+
+    confirmDelete.onclick = ()=>deleteConfrim().then(()=>confirmDelete.onclick = ()=>{})
+    deleteModal.style.display = "block";
+    
+
 }
 function editItem(id){
     console.log("editing: ", id)
@@ -94,7 +121,7 @@ function saveItem(){
     const price = document.getElementById('add-price')
     const categories = document.getElementById('add-categories').selectedOptions
     const selectedCategories = Array.from(categories).map(option=>option.value)
-    const image = document.getElementById('add-img-view').src;
+    const image = document.getElementById('add-img-view');
 
     if(name.value === "" || description.value === "" || price.value === ""){
         alert("All fields are required");
@@ -105,7 +132,17 @@ function saveItem(){
     item.append('description', description.value)
     item.append('price', price.value)
     item.append('categories', selectedCategories)
-    item.append('image', image)
+    item.append('image', image.src)
 
-    request.post('/admin/item', item).then(response=>console.log(response));
+    request.post('/admin/item', item).then(response=>{
+        if(response.data.status === "success"){
+            fetchItems()
+            addModal.style.display = "none"
+            name.value = ""
+            description.value = ""
+            price.value = ""
+            categories.selectedOptions = []
+            image.src = ""
+        }
+    });
 }

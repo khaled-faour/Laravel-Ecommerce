@@ -209,6 +209,27 @@ label{
       background-color: #001e3c;
   }
 
+  .confirm-actions{
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+  }
+  .confirm-actions button{
+      color: white;
+      background-color: #001e3c;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 10px;
+  }
+  .confirm-actions button:hover{
+      cursor: pointer;
+      filter: brightness(80%);
+  }
+  .confirm-actions button:active{
+      filter: brightness(50%);
+  }
+
   @keyframes animatetop {
     from {top: -300px; opacity: 0}
     to {top: 0; opacity: 1}

@@ -22,33 +22,48 @@
             
         </tbody>
 
-
-        <!-- Add Item Modal -->
-        <div id="add-modal" class="modal">
-
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span id="add-modal-close" class="close">&times;</span>
-                
-                <div class="form-container">
-                    <img id="add-img-view" />
-                    <input id="add-img" type="file" class="input">
-                    <label for="add-name">Name</label>
-                    <input id="add-name" type="text" name="name" class="input"/>
-                    <label for="add-description">Description</label>
-                    <textarea id="add-description" class="input textarea"></textarea>
-                    <label for="add-price">Price</label>
-                    <input id="add-price" type="number" name="price" class="input"/>
-                    <label for="add-categories">Categories</label>
-                    <select id="add-categories" class="input categories" multiple>
-                        
-                    </select>
-                    <button id="add-save" class="button add-button"><i class="fa-solid fa-plus"></i> Add</button>
-                </div>
-            </div>
-        
-        </div>
     </table>
+
+    <!-- Add Item Modal -->
+    <div id="add-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="add-modal-close" class="close">&times;</span>
+            
+            <div class="form-container">
+                <img id="add-img-view" width="200px"/>
+                <input id="add-img" type="file" class="input">
+                <label for="add-name">Name</label>
+                <input id="add-name" type="text" name="name" class="input"/>
+                <label for="add-description">Description</label>
+                <textarea id="add-description" class="input textarea"></textarea>
+                <label for="add-price">Price</label>
+                <input id="add-price" type="number" name="price" class="input"/>
+                <label for="add-categories">Categories</label>
+                <select id="add-categories" class="input categories" multiple>
+                    
+                </select>
+                <button id="add-save" class="button add-button"><i class="fa-solid fa-plus"></i> Add</button>
+            </div>
+        </div>
+    
+    </div>
+
+
+    <!-- Delete Item Modal -->
+    <div id="delete-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <h4>Are you sure you want to delete selected item?</h4>
+            <div class="confirm-actions">
+                <button id="delete-modal-close">Cancel</button>
+                <button id="delete-modal-confirm">Delete</button>
+            </div>
+        </div>
+    
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="../js/items.js" defer></script>
