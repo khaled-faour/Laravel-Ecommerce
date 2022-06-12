@@ -106,6 +106,7 @@ class ItemController extends Controller
         }else{
             $items = Item::all();
             foreach($items as $item){
+                $categoriesText = '';
                 $categories = $item->categories()->get();
                 foreach($categories as $category){
                     $categoriesText .= $category->category.", ";
