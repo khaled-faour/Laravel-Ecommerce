@@ -115,7 +115,8 @@
     max-width: 250px;
   }
   .card #like{
-    color: #8a42fd
+    color: #8a42fd;
+    font-size: 25px;
   }
 
   .card #like:hover{
