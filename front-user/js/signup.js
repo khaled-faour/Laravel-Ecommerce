@@ -25,7 +25,7 @@ signupButton.addEventListener('click',async ()=>{
         return
     }
 
-    if(!fname || !lname || !email || !password || !dob || !phone || !image){
+    if(!fname.value || !lname.value || !email.value || !password.value || !dob.value || !phone.value || !image){
         alert("All fields are required")
         return
     }
