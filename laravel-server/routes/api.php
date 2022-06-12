@@ -37,7 +37,8 @@ Route::prefix('store')->group(function(){
         Route::controller(ItemController::class)->group(function(){
             Route::get('item/favorites', 'getFavorites')->name("item.getfavorites");
             Route::get('item/{id?}', 'get')->name("item.get");
-            Route::post('item/{id}', 'addFavorite')->name("item.addfavorite");
+            Route::post('item/favorite/{id}', 'addFavorite')->name("item.addfavorite");
+            Route::delete('item/favorite/{id}', 'deleteFavorite')->name("item.deletefavorite");
         });    
         Route::controller(CategoryController::class)->group(function(){
             Route::get('category/{id?}', 'get')->name("item.get");

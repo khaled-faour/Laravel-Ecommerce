@@ -94,14 +94,23 @@ class ItemController extends Controller
     }
 
     public function get($id = null){
-        
+        $categoriesText ='';
         if($id){
             $items = Item::find($id);
-            $items->categories = $items->categories()->get();
+
+            $categories = $items->categories()->get();
+            foreach($categories as $category){
+                $categoriesText .= $category->category.", ";
+            }
+            $items->categories = $categoriesText;
         }else{
             $items = Item::all();
             foreach($items as $item){
-                $item->categories = $item->categories()->get();
+                $categories = $item->categories()->get();
+                foreach($categories as $category){
+                    $categoriesText .= $category->category.", ";
+                }
+                $item->categories = $categoriesText;
             }
         }
 
@@ -125,6 +134,18 @@ class ItemController extends Controller
 
     public function getFavorites(){
         $favorites = DB::table('favorites')->where('user_id','=', Auth::user()->id)->get();
+
+        return response()->json([
+            "status"=>"success",
+            "favorites"=> $favorites
+        ], 200);
+    }
+
+    public function deleteFavorite($id){
+        $favorites = DB::table('favorites')
+            ->where('user_id','=', Auth::user()->id)
+            ->where('item_id', '=', $id)
+            ->delete();
 
         return response()->json([
             "status"=>"success",

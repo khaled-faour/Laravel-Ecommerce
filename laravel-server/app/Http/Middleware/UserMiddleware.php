@@ -23,7 +23,7 @@ class UserMiddleware
         }
         return response()->json([
             "status"=>"failed",
-            "message"=>"Unauthorized"
+            "message"=>"Unauthenticated"
         ]);
     }
 }
