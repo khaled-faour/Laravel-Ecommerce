@@ -2,9 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../css/styles.css">
 </head>
 <body>
     <h1>Categories</h1>
+
+    <button id="add-button"><i class="fa-solid fa-plus"></i> Add</button>
+    <table class="list-table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="list">
+            
+        </tbody>
+
+    </table>
+
+    <!-- Add Item Modal -->
+    <div id="add-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="add-modal-close" class="close">&times;</span>
+            
+            <div class="form-container">
+                
+                <label for="add-name">Name</label>
+                <input id="add-name" type="text" name="name" class="input"/>
+
+                <button id="add-save" class="button add-button"><i class="fa-solid fa-plus"></i> Add</button>
+            </div>
+        </div>
+    
+    </div>
+
+
+    <!-- Edit Item Modal -->
+    <div id="edit-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span id="edit-modal-close" class="close">&times;</span>
+            
+            <div class="form-container">
+               
+                <label for="edit-name">Name</label>
+                <input id="edit-name" type="text" name="name" class="input"/>
+
+                <button id="edit-save" class="button edit-button"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+            </div>
+        </div>
+    
+    </div>
+
+
+    <!-- Delete Item Modal -->
+    <div id="delete-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <h4>Are you sure you want to delete selected category?</h4>
+            <div class="confirm-actions">
+                <button id="delete-modal-close">Cancel</button>
+                <button id="delete-modal-confirm">Delete</button>
+            </div>
+        </div>
+    
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../js/categories.js" defer></script>
 </body>
 </html>
