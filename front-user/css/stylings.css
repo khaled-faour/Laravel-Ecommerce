@@ -124,6 +124,23 @@
     filter: brightness(80%);
   }
 
+  .categories-filter-container{
+    background-color: #f8f8f8;
+    height: 55px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .categories-filter-container label{
+    font-weight: bold;
+  }
+
+  #categories-filter-list{
+    padding: 6px;
+    font-size: 17px;
+  }
   
 
 
