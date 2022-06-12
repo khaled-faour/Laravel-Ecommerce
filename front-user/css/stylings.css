@@ -46,7 +46,23 @@
     margin-left: 16px;
     font-size: 17px;
   }
+
+  .landing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+  }
   
+  .landing .description{
+    width: 30%;
+    text-align: left;
+  }
+  .landing .image{
+    width: 50%;
+  }
   /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
   @media screen and (max-width: 600px) {
     .navbar{
@@ -66,4 +82,17 @@
     .navbar .search {
       border: 1px solid #ccc;
     }
+
+    .landing{
+        flex-direction: column-reverse;
+        width: 100%;
+        margin: none;
+    }
+
+    .landing .image{
+        width: 100%;
+    }
+    .landing .description{
+        width: 50%;
+      }
   }
