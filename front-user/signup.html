@@ -2,26 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Ecommerce | Login</title>
+    <title>Ecommerce | Signup</title>
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-  <form action="" id="login-form">
-      <h1>Welcome Back</h1>
+  <div id="login-form">
+      <h1>Create Account</h1>
       <div class="input-box">
-          <input type="text" placeholder="Email">
+          <input id="f-name" type="text" placeholder="First Name">
       </div>
 
       <div class="input-box">
-          <input type="password" placeholder="Password">
+          <input id="l-name" type="text" placeholder="Last Name">
       </div>
 
-      <button type="submit" class="login-btn">Sign up</button>
+      <div class="input-box">
+          <input id="email" type="text" placeholder="Email">
+      </div>
+
+      <div class="input-box">
+          <input id="password" type="password" placeholder="Password">
+      </div>
+
+      <div class="input-box">
+          <input id="confirm-password" type="password" placeholder="Confirm">
+      </div>
+
+      <div class="input-box">
+        <input id="phone" type="tel" placeholder="Phone">
+      </div>
+      
+      <div class="input-box">
+        <input id="dob" type="date" placeholder="Date of Birth">
+      </div>
+
+      <div class="input-box">
+        <input id="img" type="file" placeholder="Profile Picture">
+      </div>
+
+      <button id="signup" class="signup-btn">Sign up</button>
 
       <div class="bottom-links">
         <p>Already have account? <a href="login.html">Login</a></p>
       </div>
-  </form>
+    </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="./js/signup.js"></script>
 </body>
 </html>
