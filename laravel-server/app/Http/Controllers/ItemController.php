@@ -122,4 +122,13 @@ class ItemController extends Controller
             "status"=>"success"
         ], 200);
     }
+
+    public function getFavorites(){
+        $favorites = DB::table('favorites')->where('user_id','=', Auth::user()->id)->get();
+
+        return response()->json([
+            "status"=>"success",
+            "favorites"=> $favorites
+        ], 200);
+    }
 }

@@ -59,7 +59,7 @@ class AuthController extends Controller
         $user->password = Hash::make($request->password);
         $user->phone_number = $request->phone_number;
         $user->dob = $request->dob;
-        $user->user_type = $request->user_type;
+        $user->user_type = "2";
         $user->image = '/storage/profiles/'.$imageName;
 
         $user->save();

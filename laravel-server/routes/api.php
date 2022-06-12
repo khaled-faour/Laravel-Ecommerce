@@ -35,6 +35,7 @@ Route::controller(AuthController::class)->group(function () {
 Route::prefix('store')->group(function(){
     Route::middleware('role.user')->group(function(){
         Route::controller(ItemController::class)->group(function(){
+            Route::get('item/favorites', 'getFavorites')->name("item.getfavorites");
             Route::get('item/{id?}', 'get')->name("item.get");
             Route::post('item/{id}', 'addFavorite')->name("item.addfavorite");
         });    
